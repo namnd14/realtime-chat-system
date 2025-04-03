@@ -9,25 +9,14 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-//@EnableWebSocketMessageBroker
-
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
-//    @Override
-//    public void configureMessageBroker(MessageBrokerRegistry config) {
-//        config.enableSimpleBroker("/topic"); // Enable a simple in-memory broker for broadcasting messages
-//        config.setApplicationDestinationPrefixes("/app"); // Prefix for client messages
-//    }
-//
-//    @Override
-//    public void registerStompEndpoints(StompEndpointRegistry registry) {
-//        registry.addEndpoint("/chat").setAllowedOriginPatterns("*").withSockJS(); // WebSocket endpoint
-//    }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler(), "/websocket");
+        registry.addHandler(webSocketHandler(), "/websocket")
+                .setAllowedOriginPatterns("*");
     }
 
     @Bean
